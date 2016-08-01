@@ -24,7 +24,7 @@ export interface IXtermState {
     isFocused:boolean
 }
 
-export default class ReactXTerm extends  React.Component<IXtermProps, IXtermState>{
+export default class XTerm extends  React.Component<IXtermProps, IXtermState>{
     xterm:any
     refs: {
         [string: string]: any;
