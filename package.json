@@ -1,0 +1,23 @@
+{
+  "name": "react-xterm",
+  "version": "1.0.0",
+  "description": "react wrapper for xterm.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/Aryballe/web-api-server/wikis/bdd-scheme"
+  },
+  "author": "Martin Guillon",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^0.13.0 || ^0.14.0 || ^15.0.1"
+  },
+  "dependencies": {
+    "autodts": "0.0.6",
+    "classnames": "^2.2.5",
+    "xterm": "git+https://github.com/sourcelair/xterm.js.git#8790a94"
+  }
+}
