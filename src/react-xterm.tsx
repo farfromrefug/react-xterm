@@ -75,6 +75,9 @@ export default class XTerm extends  React.Component<IXtermProps, IXtermState>{
 	write(data:any) {
 		this.xterm.write(data);
 	}
+	writeln(data:any) {
+		this.xterm.writeln(data);
+	}
 	focus () {
 		if (this.xterm) {
 			this.xterm.focus();
@@ -86,7 +89,7 @@ export default class XTerm extends  React.Component<IXtermProps, IXtermState>{
 		});
 		this.props.onFocusChange && this.props.onFocusChange(focused);
 	}
-    onInput (data) {
+    onInput = (data) => {
 		this.props.onInput && this.props.onInput(data);
 	}
     layout(): void {
