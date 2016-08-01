@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "react wrapper for xterm.js",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "preinstall": "npm install autodts",
     "postinstall": "autodts link",
