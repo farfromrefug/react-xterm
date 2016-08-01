@@ -4,6 +4,9 @@
   "description": "react wrapper for xterm.js",
   "main": "dist/index.js",
   "scripts": {
+    "preinstall": "npm install autodts",
+    "postinstall": "autodts link",
+    "prepublish": "tsc && autodts generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +22,8 @@
     "autodts": "0.0.6",
     "classnames": "^2.2.5",
     "xterm": "git+https://github.com/sourcelair/xterm.js.git#8790a94"
+  },
+  "devDependencies": {
+    "typescript": "^1.8.10"
   }
 }
