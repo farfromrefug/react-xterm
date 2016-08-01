@@ -1,5 +1,4 @@
 import * as React from 'react';
-declare module 'react-xterm' {
 export interface IXtermProps {
     onChange: React.PropTypes.func;
     onInput: React.PropTypes.func;
@@ -34,5 +33,4 @@ export default class ReactXTerm extends React.Component<IXtermProps, IXtermState
     layout(): void;
     setCursorBlink(blink: boolean): void;
     render(): JSX.Element;
-}
 }
