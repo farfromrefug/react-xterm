@@ -72,6 +72,9 @@ export default class XTerm extends  React.Component<IXtermProps, IXtermState>{
 	getXTerm () {
 		return this.xterm;
 	}
+	write(data:any) {
+		this.xterm.write(data);
+	}
 	focus () {
 		if (this.xterm) {
 			this.xterm.focus();

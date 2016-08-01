@@ -37,6 +37,9 @@ var XTerm = (function (_super) {
     XTerm.prototype.getXTerm = function () {
         return this.xterm;
     };
+    XTerm.prototype.write = function (data) {
+        this.xterm.write(data);
+    };
     XTerm.prototype.focus = function () {
         if (this.xterm) {
             this.xterm.focus();

@@ -25,6 +25,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     componentDidMount(): void;
     componentWillUnmount(): void;
     getXTerm(): any;
+    write(data: any): void;
     focus(): void;
     focusChanged(focused: any): void;
     onInput(data: any): void;
