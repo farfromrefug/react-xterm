@@ -32,15 +32,12 @@ export default class XTerm extends  React.Component<IXtermProps, IXtermState>{
     }
     constructor(props?: IXtermProps, context?: any) {
         super(props, context);
-        this.state = this.getInitialState();
+        this.state = {
+			isFocused: false
+		};
     }
     getXTermInstance () {
 		return this.props.xtermInstance || require('xterm');
-	}
-	getInitialState () {
-		return {
-			isFocused: false,
-		};
 	}
     componentDidMount () {
         // console.log('componentDidMount', this.props.options);
