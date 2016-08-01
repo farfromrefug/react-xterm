@@ -1,9 +1,9 @@
 {
-  "name": "reactxterm",
+  "name": "react-xterm",
   "version": "1.0.0",
   "description": "react wrapper for xterm.js",
-  "main": "./dist/reactxterm.js",
-  "typings": "./dist/reactxterm.d.ts",
+  "main": "./dist/react-xterm.js",
+  "typings": "./dist/react-xterm.d.ts",
   "scripts": {
     "prepublish": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"

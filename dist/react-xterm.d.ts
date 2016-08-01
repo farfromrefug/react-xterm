@@ -36,3 +36,8 @@ export default class ReactXTerm extends React.Component<IXtermProps, IXtermState
     render(): JSX.Element;
 }
 }
+
+declare module "react-xterm" {
+    import a = reactxterm;
+    export = a;
+}
