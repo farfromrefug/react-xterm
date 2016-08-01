@@ -1,6 +1,6 @@
 import * as React from 'react';
 declare module 'react-xterm' {
-  export interface IXtermProps {
+export interface IXtermProps {
     onChange: React.PropTypes.func;
     onInput: React.PropTypes.func;
     onFocusChange: React.PropTypes.func;
@@ -10,15 +10,21 @@ declare module 'react-xterm' {
     value: React.PropTypes.string;
     className: React.PropTypes.any;
     xtermInstance: React.PropTypes.object;
-  }
-  export interface IXtermState { isFocused: boolean; }
-  export default class ReactXTerm extends
-      React.Component<IXtermProps, IXtermState> {
+}
+export interface IXtermState {
+    isFocused: boolean;
+}
+export default class ReactXTerm extends React.Component<IXtermProps, IXtermState> {
     xterm: any;
-    refs: {[string: string]: any; container: HTMLDivElement;};
+    refs: {
+        [string: string]: any;
+        container: HTMLDivElement;
+    };
     constructor(props?: IXtermProps, context?: any);
     getXTermInstance(): any;
-    getInitialState(): {isFocused: boolean;};
+    getInitialState(): {
+        isFocused: boolean;
+    };
     componentDidMount(): void;
     componentWillUnmount(): void;
     getXTerm(): any;
@@ -28,5 +34,5 @@ declare module 'react-xterm' {
     layout(): void;
     setCursorBlink(blink: boolean): void;
     render(): JSX.Element;
-  }
+}
 }
