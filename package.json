@@ -2,8 +2,8 @@
   "name": "react-xterm",
   "version": "1.0.0",
   "description": "react wrapper for xterm.js",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "./dist/react-xterm.js",
+  "typings": "./dist/react-xterm.d.ts",
   "scripts": {
     "preinstall": "npm install autodts",
     "postinstall": "autodts link",
