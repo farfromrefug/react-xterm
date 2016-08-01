@@ -10,15 +10,15 @@ require ('xterm/addons/fullscreen');
 require ('xterm/addons/linkify');
 
 export interface IXtermProps {
-    onChange: React.PropTypes.func
-    onInput: React.PropTypes.func
-    onFocusChange: React.PropTypes.func
-    onScroll: React.PropTypes.func
-    options: React.PropTypes.object
-    path: React.PropTypes.string
-    value: React.PropTypes.string
-    className: React.PropTypes.any
-    xtermInstance: React.PropTypes.object
+    onChange?: React.PropTypes.func
+    onInput?: React.PropTypes.func
+    onFocusChange?: React.PropTypes.func
+    onScroll?: React.PropTypes.func
+    options?: React.PropTypes.object
+    path?: React.PropTypes.string
+    value?: React.PropTypes.string
+    className?: React.PropTypes.any
+    xtermInstance?: React.PropTypes.object
 }
 export interface IXtermState {
     isFocused:boolean
