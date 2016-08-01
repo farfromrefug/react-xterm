@@ -48,7 +48,9 @@ export default class XTerm extends  React.Component<IXtermProps, IXtermState>{
 		this.xterm.open(this.refs.container);
 		this.xterm.on('focus', this.focusChanged.bind(this, true));
 		this.xterm.on('blur', this.focusChanged.bind(this, false));
-		this.xterm.on('data', this.onInput);
+		if (this.props.onInput) {
+			this.xterm.on('data', this.onInput);
+		}
 		// this.xterm.on('resize', this.scrollChanged);
 		// this.xterm.setValue(this.props.defaultValue || this.props.value || '');
 	}
