@@ -9,7 +9,7 @@ require ('xterm/addons/fit');
 require ('xterm/addons/fullscreen');
 require ('xterm/addons/linkify');
 
-interface IXtermProps {
+export interface IXtermProps {
     onChange: React.PropTypes.func
     onInput: React.PropTypes.func
     onFocusChange: React.PropTypes.func
@@ -20,7 +20,7 @@ interface IXtermProps {
     className: React.PropTypes.any
     xtermInstance: React.PropTypes.object
 }
-interface IXtermState {
+export interface IXtermState {
     isFocused:boolean
 }
 

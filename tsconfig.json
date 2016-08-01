@@ -9,8 +9,8 @@
         "noImplicitAny": false,
         "noEmitOnError": false,
         "jsx": "react",
-        "allowJs": true,
-        "outDir": "dist"
+        "outDir": "dist",
+        "declaration": true
 	},
     "exclude": [
         "node_modules",
