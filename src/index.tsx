@@ -9,26 +9,40 @@ require ('xterm/addons/fit');
 require ('xterm/addons/fullscreen');
 require ('xterm/addons/linkify');
 
-const ReactXTerm = React.createClass({
-	propTypes: {
-		onChange: React.PropTypes.func,
-		onFocusChange: React.PropTypes.func,
-		onScroll: React.PropTypes.func,
-		options: React.PropTypes.object,
-		path: React.PropTypes.string,
-		value: React.PropTypes.string,
-		className: React.PropTypes.any,
-		xtermInstance: React.PropTypes.object,
-	},
-	getXTermInstance () {
+interface IXtermProps {
+    onChange: React.PropTypes.func
+    onInput: React.PropTypes.func
+    onFocusChange: React.PropTypes.func
+    onScroll: React.PropTypes.func
+    options: React.PropTypes.object
+    path: React.PropTypes.string
+    value: React.PropTypes.string
+    className: React.PropTypes.any
+    xtermInstance: React.PropTypes.object
+}
+interface IXtermState {
+    isFocused:boolean
+}
+
+export default class ReactXTerm extends  React.Component<IXtermProps, IXtermState>{
+    xterm:any
+    refs: {
+        [string: string]: any;
+        container: HTMLDivElement;
+    }
+    constructor(props?: IXtermProps, context?: any) {
+        super(props, context);
+        this.state = this.getInitialState();
+    }
+    getXTermInstance () {
 		return this.props.xtermInstance || require('xterm');
-	},
+	}
 	getInitialState () {
 		return {
 			isFocused: false,
 		};
-	},
-	componentDidMount () {
+	}
+    componentDidMount () {
         // console.log('componentDidMount', this.props.options);
 		const xtermInstance = this.getXTermInstance();
 		// require('xterm/addons/fit/fit');
@@ -40,14 +54,14 @@ const ReactXTerm = React.createClass({
 		this.xterm.on('data', this.onInput);
 		// this.xterm.on('resize', this.scrollChanged);
 		// this.xterm.setValue(this.props.defaultValue || this.props.value || '');
-	},
+	}
 	componentWillUnmount () {
 		// is there a lighter-weight way to remove the cm instance?
 		if (this.xterm) {
 			this.xterm.destroy();
             this.xterm = null;
 		}
-	},
+	}
 	// componentWillReceiveProps: debounce(function (nextProps) {
 
 	// 	if (typeof nextProps.options === 'object') {
@@ -60,30 +74,30 @@ const ReactXTerm = React.createClass({
 	// }, 0),
 	getXTerm () {
 		return this.xterm;
-	},
+	}
 	focus () {
 		if (this.xterm) {
 			this.xterm.focus();
 		}
-	},
+	}
 	focusChanged (focused) {
 		this.setState({
 			isFocused: focused,
 		});
 		this.props.onFocusChange && this.props.onFocusChange(focused);
-	},
+	}
     onInput (data) {
 		this.props.onInput && this.props.onInput(data);
-	},
+	}
     layout(): void {
         this.xterm.fit();
-	},
+	}
     setCursorBlink(blink: boolean): void {
 		if (this.xterm && this.xterm.cursorBlink !== blink) {
 			this.xterm.cursorBlink = blink;
 			this.xterm.refresh(0, this.xterm.rows - 1);
 		}
-	},
+	}
 	render () {
 		const terminalClassName = className(
 			'ReactXTerm',
@@ -95,7 +109,5 @@ const ReactXTerm = React.createClass({
 			<div ref="container" className={terminalClassName}>
 			</div>
 		);
-	},
-});
-
-module.exports = ReactXTerm;
+	}
+}

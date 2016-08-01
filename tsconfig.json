@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+        "module": "commonjs",
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "noImplicitAny": false,
+        "noEmitOnError": false,
+        "jsx": "react",
+        "allowJs": true,
+        "outDir": "dist"
+	},
+    "exclude": [
+        "node_modules",
+        ".git",
+        "dist"
+    ]
+}
