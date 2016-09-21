@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "xterm": "sourcelair/xterm.js"
+    "xterm": "1.3"
   },
   "devDependencies": {
     "typescript": "^1.8.10"
