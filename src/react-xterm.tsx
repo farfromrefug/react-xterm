@@ -1,24 +1,23 @@
 import * as React from 'react'
+import * as Xterm from 'xterm'
 
 const className = require('classnames');
 // const debounce = require('lodash.debounce');
 // import styles from 'xterm/xterm.css';
 
 // require ('xterm/xterm.css');
-require ('xterm/addons/fit');
-require ('xterm/addons/fullscreen');
-require ('xterm/addons/linkify');
+
 
 export interface IXtermProps {
-    onChange?: React.PropTypes.func
-    onInput?: React.PropTypes.func
-    onFocusChange?: React.PropTypes.func
-    onScroll?: React.PropTypes.func
-    options?: React.PropTypes.object
-    path?: React.PropTypes.string
-    value?: React.PropTypes.string
-    className?: React.PropTypes.any
-    xtermInstance?: React.PropTypes.object
+    onChange?: Function
+    onInput?: Function
+    onFocusChange?: Function
+    onScroll?: Function
+    options?: any
+    path?: string
+    value?: string
+    className?: string
+    xtermInstance?: Xterm
 }
 export interface IXtermState {
     isFocused:boolean
@@ -36,8 +35,16 @@ export default class XTerm extends  React.Component<IXtermProps, IXtermState>{
 			isFocused: false
 		};
     }
+
+	xtermInstance
     getXTermInstance () {
-		return this.props.xtermInstance || require('xterm');
+		if (!this.xtermInstance) {
+			this.xtermInstance = this.props.xtermInstance || new Xterm();
+			require ('xterm/addons/fit').attach(this.xtermInstance);
+			// require ('xterm/addons/fullscreen');
+			require ('xterm/addons/linkify').attach(this.xtermInstance);
+		}
+		return this.xtermInstance;
 	}
     componentDidMount () {
         // console.log('componentDidMount', this.props.options);

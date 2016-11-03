@@ -1,15 +1,17 @@
-declare module reactxterm {
+/// <reference types="xterm" />
+/// <reference types="react" />
 import * as React from 'react';
+import * as Xterm from 'xterm';
 export interface IXtermProps {
-    onChange?: React.PropTypes.func;
-    onInput?: React.PropTypes.func;
-    onFocusChange?: React.PropTypes.func;
-    onScroll?: React.PropTypes.func;
-    options?: React.PropTypes.object;
-    path?: React.PropTypes.string;
-    value?: React.PropTypes.string;
-    className?: React.PropTypes.any;
-    xtermInstance?: React.PropTypes.object;
+    onChange?: Function;
+    onInput?: Function;
+    onFocusChange?: Function;
+    onScroll?: Function;
+    options?: any;
+    path?: string;
+    value?: string;
+    className?: string;
+    xtermInstance?: Xterm;
 }
 export interface IXtermState {
     isFocused: boolean;
@@ -21,21 +23,17 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
         container: HTMLDivElement;
     };
     constructor(props?: IXtermProps, context?: any);
+    xtermInstance: any;
     getXTermInstance(): any;
     componentDidMount(): void;
     componentWillUnmount(): void;
     getXTerm(): any;
     write(data: any): void;
+    writeln(data: any): void;
     focus(): void;
     focusChanged(focused: any): void;
-    onInput(data: any): void;
+    onInput: (data: any) => void;
     layout(): void;
     setCursorBlink(blink: boolean): void;
     render(): JSX.Element;
-}
-}
-
-declare module "react-xterm" {
-    import a = reactxterm;
-    export = a;
 }
