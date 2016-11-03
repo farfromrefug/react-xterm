@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "xterm": "sourcelair/xterm.js"
+    "xterm": "sourcelair/xterm.js#220828f"
   },
   "devDependencies": {
     "@types/node": "^6.0.46",
