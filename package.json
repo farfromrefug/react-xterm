@@ -1,30 +1,30 @@
 {
   "name": "react-xterm",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "react wrapper for xterm.js",
   "main": "./dist/react-xterm.js",
-  "typings": "./dist/react-xterm.d.ts",
+  "types": "./dist/react-xterm.d.ts",
   "scripts": {
     "prepublish": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/Aryballe/web-api-server/wikis/bdd-scheme"
+    "url": "https://github.com/farfromrefug/react-xterm"
   },
   "author": "Martin Guillon",
   "license": "ISC",
   "peerDependencies": {
-    "react": "^15.0.1"
+    "react": "^15.4.2"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "xterm": "sourcelair/xterm.js#220828f"
+    "xterm": "^2.4.0"
   },
   "devDependencies": {
-    "@types/node": "^6.0.46",
-    "@types/react": "^0.14.44",
-    "@types/xterm": "^2.0.1",
-    "typescript": "^2.0.6"
+    "@types/node": "^7.0.8",
+    "@types/react": "^15.0.16",
+    "@types/xterm": "^2.0.2",
+    "typescript": "2.2.1"
   }
 }

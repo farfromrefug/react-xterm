@@ -25,6 +25,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     constructor(props?: IXtermProps, context?: any);
     xtermInstance: any;
     getXTermInstance(): any;
+    attachAddon(addon: any): void;
     componentDidMount(): void;
     componentWillUnmount(): void;
     getXTerm(): any;
@@ -33,7 +34,9 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     focus(): void;
     focusChanged(focused: any): void;
     onInput: (data: any) => void;
-    layout(): void;
+    fit: () => void;
+    resize(cols: number, rows: number): void;
     setCursorBlink(blink: boolean): void;
+    proposeGeometry(term: any): any;
     render(): JSX.Element;
 }

@@ -39,7 +39,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 	xtermInstance
 	getXTermInstance() {
 		if (!this.xtermInstance) {
-			this.xtermInstance = this.props.xtermInstance || new Xterm();
+			this.xtermInstance = this.props.xtermInstance || Xterm;
 			// require('xterm/addons/fit').attach(this.xtermInstance);
 			// require ('xterm/addons/fullscreen');
 			// require('xterm/addons/linkify').attach(this.xtermInstance);
@@ -62,7 +62,9 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 			this.xterm.on('data', this.onInput);
 		}
 		// this.xterm.on('resize', this.scrollChanged);
-		// this.xterm.setValue(this.props.defaultValue || this.props.value || '');
+		if (this.props.value) {
+			this.xterm.write(this.props.value);
+		}
 	}
 	componentWillUnmount() {
 		// is there a lighter-weight way to remove the cm instance?
@@ -104,8 +106,9 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 	onInput = (data) => {
 		this.props.onInput && this.props.onInput(data);
 	}
-	fit(): void {
-		this.xterm.fit();
+	fit = () => {
+		var geometry = this.proposeGeometry(this.xterm);
+		this.resize(geometry.cols, geometry.rows);
 	}
 	resize(cols: number, rows: number) {
 		this.xterm.resize(cols, rows);
@@ -116,6 +119,37 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 			this.xterm.refresh(0, this.xterm.rows - 1);
 		}
 	}
+	proposeGeometry(term) {
+		var parentElementStyle = window.getComputedStyle(term.element.parentElement),
+			parentElementHeight = parseInt(parentElementStyle.getPropertyValue('height')),
+			parentElementWidth = Math.max(0, parseInt(parentElementStyle.getPropertyValue('width')) - 17),
+			elementStyle = window.getComputedStyle(term.element),
+			elementPaddingVer = parseInt(elementStyle.getPropertyValue('padding-top')) + parseInt(elementStyle.getPropertyValue('padding-bottom')),
+			elementPaddingHor = parseInt(elementStyle.getPropertyValue('padding-right')) + parseInt(elementStyle.getPropertyValue('padding-left')),
+			availableHeight = parentElementHeight - elementPaddingVer,
+			availableWidth = parentElementWidth - elementPaddingHor,
+			container = term.rowContainer,
+			subjectRow = term.rowContainer.firstElementChild,
+			contentBuffer = subjectRow.innerHTML,
+			characterHeight,
+			rows,
+			characterWidth,
+			cols,
+			geometry;
+
+		subjectRow.style.display = 'inline';
+		subjectRow.innerHTML = 'W'; // Common character for measuring width, although on monospace
+		characterWidth = subjectRow.getBoundingClientRect().width;
+		subjectRow.style.display = ''; // Revert style before calculating height, since they differ.
+		characterHeight = parseInt(subjectRow.offsetHeight);
+		subjectRow.innerHTML = contentBuffer;
+
+		rows = availableHeight / characterHeight;
+		cols = availableWidth / characterWidth;
+
+		geometry = { cols: cols, rows: rows };
+		return geometry;
+	};
 	render() {
 		const terminalClassName = className(
 			'ReactXTerm',
