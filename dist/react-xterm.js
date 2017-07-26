@@ -75,12 +75,13 @@ class XTerm extends React.Component {
         }
     }
     proposeGeometry(term) {
-        var parentElementStyle = window.getComputedStyle(term.element.parentElement), parentElementHeight = parseInt(parentElementStyle.getPropertyValue('height')), parentElementWidth = Math.max(0, parseInt(parentElementStyle.getPropertyValue('width')) - 17), elementStyle = window.getComputedStyle(term.element), elementPaddingVer = parseInt(elementStyle.getPropertyValue('padding-top')) + parseInt(elementStyle.getPropertyValue('padding-bottom')), elementPaddingHor = parseInt(elementStyle.getPropertyValue('padding-right')) + parseInt(elementStyle.getPropertyValue('padding-left')), availableHeight = parentElementHeight - elementPaddingVer, availableWidth = parentElementWidth - elementPaddingHor, container = term.rowContainer, subjectRow = term.rowContainer.firstElementChild, contentBuffer = subjectRow.innerHTML, characterHeight, rows, characterWidth, cols, geometry;
+        const int = (str) => parseInt(str, 10);
+        var parentElementStyle = window.getComputedStyle(term.element.parentElement), parentElementHeight = int(parentElementStyle.getPropertyValue('height')), parentElementWidth = Math.max(0, int(parentElementStyle.getPropertyValue('width')) - 17), elementStyle = window.getComputedStyle(term.element), elementPaddingVer = int(elementStyle.getPropertyValue('padding-top')) + int(elementStyle.getPropertyValue('padding-bottom')), elementPaddingHor = int(elementStyle.getPropertyValue('padding-right')) + int(elementStyle.getPropertyValue('padding-left')), availableHeight = parentElementHeight - elementPaddingVer, availableWidth = parentElementWidth - elementPaddingHor, subjectRow = term.rowContainer.firstElementChild, contentBuffer = subjectRow.innerHTML, characterHeight, rows, characterWidth, cols, geometry;
         subjectRow.style.display = 'inline';
         subjectRow.innerHTML = 'W';
         characterWidth = subjectRow.getBoundingClientRect().width;
         subjectRow.style.display = '';
-        characterHeight = parseInt(subjectRow.offsetHeight);
+        characterHeight = int(subjectRow.offsetHeight);
         subjectRow.innerHTML = contentBuffer;
         rows = availableHeight / characterHeight;
         cols = availableWidth / characterWidth;
