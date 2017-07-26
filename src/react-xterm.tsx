@@ -109,6 +109,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 	fit = () => {
 		var geometry = this.proposeGeometry(this.xterm);
 		this.resize(geometry.cols, geometry.rows);
+		return geometry;
 	}
 	resize(cols: number, rows: number) {
 		this.xterm.resize(cols, rows);
@@ -144,8 +145,8 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 		characterHeight = parseInt(subjectRow.offsetHeight);
 		subjectRow.innerHTML = contentBuffer;
 
-		rows = availableHeight / characterHeight;
-		cols = availableWidth / characterWidth;
+		rows = Math.floor(availableHeight / characterHeight);
+		cols = Math.floor(availableWidth / characterWidth);
 
 		geometry = { cols: cols, rows: rows };
 		return geometry;
