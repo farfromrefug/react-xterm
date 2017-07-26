@@ -55,7 +55,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 		// require('xterm/addons/fit/fit');
 		// require('xterm/addons/fullscreen/fullscreen');
 		this.xterm = new xtermInstance(this.props.options);
-		this.xterm.open(this.refs.container);
+		this.xterm.open(this.refs.container, true);
 		this.xterm.on('focus', this.focusChanged.bind(this, true));
 		this.xterm.on('blur', this.focusChanged.bind(this, false));
 		if (this.props.onInput) {
