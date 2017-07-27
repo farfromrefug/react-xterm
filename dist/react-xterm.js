@@ -30,7 +30,7 @@ class XTerm extends React.Component {
     componentDidMount() {
         const xtermInstance = this.getXTermInstance();
         this.xterm = new xtermInstance(this.props.options);
-        this.xterm.open(this.refs.container);
+        this.xterm.open(this.refs.container, true);
         this.xterm.on('focus', this.focusChanged.bind(this, true));
         this.xterm.on('blur', this.focusChanged.bind(this, false));
         if (this.props.onInput) {
