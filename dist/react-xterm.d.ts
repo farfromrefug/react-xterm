@@ -34,7 +34,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     focus(): void;
     focusChanged(focused: any): void;
     onInput: (data: any) => void;
-    fit: () => void;
+    fit: () => any;
     resize(cols: number, rows: number): void;
     setCursorBlink(blink: boolean): void;
     proposeGeometry(term: any): any;
