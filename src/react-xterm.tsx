@@ -111,7 +111,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 		this.resize(geometry.cols, geometry.rows);
 	}
 	resize(cols: number, rows: number) {
-		this.xterm.resize(cols, rows);
+		this.xterm.resize(Math.round(cols), Math.round(rows));
 	}
 	setCursorBlink(blink: boolean): void {
 		if (this.xterm && this.xterm.cursorBlink !== blink) {
@@ -141,7 +141,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 		subjectRow.innerHTML = 'W'; // Common character for measuring width, although on monospace
 		characterWidth = subjectRow.getBoundingClientRect().width;
 		subjectRow.style.display = ''; // Revert style before calculating height, since they differ.
-		characterHeight = parseInt(subjectRow.offsetHeight);
+		characterHeight = parseFloat(subjectRow.offsetHeight);
 		subjectRow.innerHTML = contentBuffer;
 
 		rows = availableHeight / characterHeight;

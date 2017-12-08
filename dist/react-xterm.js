@@ -66,7 +66,7 @@ class XTerm extends React.Component {
         this.props.onFocusChange && this.props.onFocusChange(focused);
     }
     resize(cols, rows) {
-        this.xterm.resize(cols, rows);
+        this.xterm.resize(Math.round(cols), Math.round(rows));
     }
     setCursorBlink(blink) {
         if (this.xterm && this.xterm.cursorBlink !== blink) {
@@ -80,7 +80,7 @@ class XTerm extends React.Component {
         subjectRow.innerHTML = 'W';
         characterWidth = subjectRow.getBoundingClientRect().width;
         subjectRow.style.display = '';
-        characterHeight = parseInt(subjectRow.offsetHeight);
+        characterHeight = parseFloat(subjectRow.offsetHeight);
         subjectRow.innerHTML = contentBuffer;
         rows = availableHeight / characterHeight;
         cols = availableWidth / characterWidth;
