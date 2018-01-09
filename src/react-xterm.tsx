@@ -7,17 +7,17 @@ const className = require('classnames');
 // require ('xterm/xterm.css');
 
 
-export interface IXtermProps {
-	onChange?: Function
-	onInput?: Function
-	onFocusChange?: Function
-	addons?: string[]
-	onScroll?: Function
-	options?: any
-	path?: string
-	value?: string
-	className?: string
-	style?: React.CSSProperties
+export interface IXtermProps extends React.DOMAttributes<{}> {
+    onChange?: (e)=>void;
+    onInput?: (e)=>void;
+    onFocusChange?: Function;
+    addons?: string[];
+    onScroll?: (e)=>void;
+    options?: any;
+    path?: string;
+    value?: string;
+    className?: string;
+    style?: React.CSSProperties;
 }
 export interface IXtermState {
 	isFocused: boolean
