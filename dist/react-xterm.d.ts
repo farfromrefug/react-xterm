@@ -32,11 +32,9 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     focus(): void;
     focusChanged(focused: any): void;
     onInput: (data: any) => void;
-    fit: () => any;
     resize(cols: number, rows: number): void;
     setOption(key: string, value: boolean): void;
     refresh(): void;
-    proposeGeometry(term: any): any;
     render(): JSX.Element;
 }
 export { Terminal, XTerm };

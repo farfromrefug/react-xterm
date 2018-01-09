@@ -101,11 +101,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 	onInput = (data) => {
 		this.props.onInput && this.props.onInput(data);
 	}
-	fit = () => {
-		var geometry = this.proposeGeometry(this.xterm);
-		this.resize(geometry.cols, geometry.rows);
-		return geometry;
-	}
+
 	resize(cols: number, rows: number) {
 		this.xterm.resize(Math.round(cols), Math.round(rows));
 	}
@@ -114,37 +110,6 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 	}
 	refresh() {
 		this.xterm.refresh(0, this.xterm.rows - 1);
-	}
-	proposeGeometry(term) {
-		const int = (str) => parseInt(str, 10);
-		var parentElementStyle = window.getComputedStyle(term.element.parentElement),
-			parentElementHeight = int(parentElementStyle.getPropertyValue('height')),
-			parentElementWidth = Math.max(0, int(parentElementStyle.getPropertyValue('width')) - 17),
-			elementStyle = window.getComputedStyle(term.element),
-			elementPaddingVer = int(elementStyle.getPropertyValue('padding-top')) + int(elementStyle.getPropertyValue('padding-bottom')),
-			elementPaddingHor = int(elementStyle.getPropertyValue('padding-right')) + int(elementStyle.getPropertyValue('padding-left')),
-			availableHeight = parentElementHeight - elementPaddingVer,
-			availableWidth = parentElementWidth - elementPaddingHor,
-			subjectRow = term.rowContainer.firstElementChild,
-			contentBuffer = subjectRow.innerHTML,
-			characterHeight,
-			rows,
-			characterWidth,
-			cols,
-			geometry;
-
-		subjectRow.style.display = 'inline';
-		subjectRow.innerHTML = 'W'; // Common character for measuring width, although on monospace
-		characterWidth = subjectRow.getBoundingClientRect().width;
-		subjectRow.style.display = ''; // Revert style before calculating height, since they differ.
-		characterHeight = int(subjectRow.offsetHeight);
-		subjectRow.innerHTML = contentBuffer;
-
-		rows = Math.floor(availableHeight / characterHeight);
-		cols = Math.floor(availableWidth / characterWidth);
-
-		geometry = { cols: cols, rows: rows };
-		return geometry;
 	}
 
 	render() {

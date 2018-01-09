@@ -10,11 +10,6 @@ class XTerm extends React.Component {
         this.onInput = (data) => {
             this.props.onInput && this.props.onInput(data);
         };
-        this.fit = () => {
-            var geometry = this.proposeGeometry(this.xterm);
-            this.resize(geometry.cols, geometry.rows);
-            return geometry;
-        };
         this.state = {
             isFocused: false
         };
@@ -74,20 +69,6 @@ class XTerm extends React.Component {
     }
     refresh() {
         this.xterm.refresh(0, this.xterm.rows - 1);
-    }
-    proposeGeometry(term) {
-        const int = (str) => parseInt(str, 10);
-        var parentElementStyle = window.getComputedStyle(term.element.parentElement), parentElementHeight = int(parentElementStyle.getPropertyValue('height')), parentElementWidth = Math.max(0, int(parentElementStyle.getPropertyValue('width')) - 17), elementStyle = window.getComputedStyle(term.element), elementPaddingVer = int(elementStyle.getPropertyValue('padding-top')) + int(elementStyle.getPropertyValue('padding-bottom')), elementPaddingHor = int(elementStyle.getPropertyValue('padding-right')) + int(elementStyle.getPropertyValue('padding-left')), availableHeight = parentElementHeight - elementPaddingVer, availableWidth = parentElementWidth - elementPaddingHor, subjectRow = term.rowContainer.firstElementChild, contentBuffer = subjectRow.innerHTML, characterHeight, rows, characterWidth, cols, geometry;
-        subjectRow.style.display = 'inline';
-        subjectRow.innerHTML = 'W';
-        characterWidth = subjectRow.getBoundingClientRect().width;
-        subjectRow.style.display = '';
-        characterHeight = int(subjectRow.offsetHeight);
-        subjectRow.innerHTML = contentBuffer;
-        rows = Math.floor(availableHeight / characterHeight);
-        cols = Math.floor(availableWidth / characterWidth);
-        geometry = { cols: cols, rows: rows };
-        return geometry;
     }
     render() {
         const terminalClassName = className('ReactXTerm', this.state.isFocused ? 'ReactXTerm--focused' : null, this.props.className);

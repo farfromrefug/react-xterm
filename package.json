@@ -1,6 +1,6 @@
 {
   "name": "react-xterm",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "react wrapper for xterm.js",
   "main": "./dist/react-xterm.js",
   "types": "./dist/react-xterm.d.ts",
