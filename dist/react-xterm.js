@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
-const Xterm = require("xterm");
+const xterm_1 = require("xterm");
+exports.Terminal = xterm_1.Terminal;
 const className = require('classnames');
 class XTerm extends React.Component {
     constructor(props, context) {
@@ -18,19 +19,18 @@ class XTerm extends React.Component {
             isFocused: false
         };
     }
-    getXTermInstance() {
-        if (!this.xtermInstance) {
-            this.xtermInstance = this.props.xtermInstance || Xterm;
-        }
-        return this.xtermInstance;
-    }
     attachAddon(addon) {
-        addon.attach(this.xtermInstance);
+        xterm_1.Terminal.applyAddon(addon);
     }
     componentDidMount() {
-        const xtermInstance = this.getXTermInstance();
-        this.xterm = new xtermInstance(this.props.options);
-        this.xterm.open(this.refs.container, true);
+        if (this.props.addons) {
+            this.props.addons.forEach(s => {
+                const addon = require(`xterm/${s}/${s}`);
+                xterm_1.Terminal.applyAddon(addon);
+            });
+        }
+        this.xterm = new xterm_1.Terminal(this.props.options);
+        this.xterm.open(this.refs.container);
         this.xterm.on('focus', this.focusChanged.bind(this, true));
         this.xterm.on('blur', this.focusChanged.bind(this, false));
         if (this.props.onInput) {
@@ -46,7 +46,7 @@ class XTerm extends React.Component {
             this.xterm = null;
         }
     }
-    getXTerm() {
+    getTerminal() {
         return this.xterm;
     }
     write(data) {
@@ -69,11 +69,11 @@ class XTerm extends React.Component {
     resize(cols, rows) {
         this.xterm.resize(Math.round(cols), Math.round(rows));
     }
-    setCursorBlink(blink) {
-        if (this.xterm && this.xterm.cursorBlink !== blink) {
-            this.xterm.cursorBlink = blink;
-            this.xterm.refresh(0, this.xterm.rows - 1);
-        }
+    setOption(key, value) {
+        this.xterm.setOption(key, value);
+    }
+    refresh() {
+        this.xterm.refresh(0, this.xterm.rows - 1);
     }
     proposeGeometry(term) {
         const int = (str) => parseInt(str, 10);
@@ -89,10 +89,10 @@ class XTerm extends React.Component {
         geometry = { cols: cols, rows: rows };
         return geometry;
     }
-    ;
     render() {
         const terminalClassName = className('ReactXTerm', this.state.isFocused ? 'ReactXTerm--focused' : null, this.props.className);
         return (React.createElement("div", { ref: "container", className: terminalClassName }));
     }
 }
 exports.default = XTerm;
+exports.XTerm = XTerm;

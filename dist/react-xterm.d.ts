@@ -1,34 +1,32 @@
-/// <reference types="xterm" />
 /// <reference types="react" />
 import * as React from 'react';
-import * as Xterm from 'xterm';
+import { Terminal } from 'xterm';
 export interface IXtermProps {
     onChange?: Function;
     onInput?: Function;
     onFocusChange?: Function;
+    addons?: string[];
     onScroll?: Function;
     options?: any;
     path?: string;
     value?: string;
     className?: string;
-    xtermInstance?: Xterm;
+    style?: React.CSSProperties;
 }
 export interface IXtermState {
     isFocused: boolean;
 }
 export default class XTerm extends React.Component<IXtermProps, IXtermState> {
-    xterm: any;
+    xterm: Terminal;
     refs: {
         [string: string]: any;
         container: HTMLDivElement;
     };
     constructor(props?: IXtermProps, context?: any);
-    xtermInstance: any;
-    getXTermInstance(): any;
     attachAddon(addon: any): void;
     componentDidMount(): void;
     componentWillUnmount(): void;
-    getXTerm(): any;
+    getTerminal(): Terminal;
     write(data: any): void;
     writeln(data: any): void;
     focus(): void;
@@ -36,7 +34,9 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     onInput: (data: any) => void;
     fit: () => any;
     resize(cols: number, rows: number): void;
-    setCursorBlink(blink: boolean): void;
+    setOption(key: string, value: boolean): void;
+    refresh(): void;
     proposeGeometry(term: any): any;
     render(): JSX.Element;
 }
+export { Terminal, XTerm };
