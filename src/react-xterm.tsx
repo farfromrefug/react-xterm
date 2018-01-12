@@ -8,16 +8,17 @@ const className = require('classnames');
 
 
 export interface IXtermProps extends React.DOMAttributes<{}> {
-    onChange?: (e)=>void;
-    onInput?: (e)=>void;
-    onFocusChange?: Function;
-    addons?: string[];
-    onScroll?: (e)=>void;
-    options?: any;
-    path?: string;
-    value?: string;
-    className?: string;
-    style?: React.CSSProperties;
+    onChange?: (e)=>void
+    onInput?: (e)=>void
+    onFocusChange?: Function
+    addons?: string[]
+    onScroll?: (e)=>void
+    onContextMenu?: (e)=>void
+    options?: any
+    path?: string
+    value?: string
+    className?: string
+    style?: React.CSSProperties
 }
 export interface IXtermState {
 	isFocused: boolean
@@ -46,17 +47,16 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 				Terminal.applyAddon(addon);
 			});
 		}
-		// console.log('componentDidMount', this.props.options);
-		// require('xterm/addons/fit/fit');
-		// require('xterm/addons/fullscreen/fullscreen');
 		this.xterm = new Terminal(this.props.options);
 		this.xterm.open(this.refs.container);
 		this.xterm.on('focus', this.focusChanged.bind(this, true));
 		this.xterm.on('blur', this.focusChanged.bind(this, false));
+		if (this.props.onContextMenu) {
+			this.xterm.element.addEventListener('contextmenu', this.onContextMenu.bind(this));
+		}
 		if (this.props.onInput) {
 			this.xterm.on('data', this.onInput);
 		}
-		// this.xterm.on('resize', this.scrollChanged);
 		if (this.props.value) {
 			this.xterm.write(this.props.value);
 		}
@@ -111,6 +111,10 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 	refresh() {
 		this.xterm.refresh(0, this.xterm.rows - 1);
 	}
+	
+	onContextMenu(e) {
+        	this.props.onContextMenu && this.props.onContextMenu(e, this.xterm.getSelection());
+    	}
 
 	render() {
 		const terminalClassName = className(
