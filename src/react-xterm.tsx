@@ -36,7 +36,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 		};
 	}
 
-	attachAddon(addon) {
+	applyAddon(addon) {
 		Terminal.applyAddon(addon);
 	}
 	componentDidMount() {
