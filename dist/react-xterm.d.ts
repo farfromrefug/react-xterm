@@ -1,12 +1,13 @@
 /// <reference types="react" />
 import * as React from 'react';
 import { Terminal } from 'xterm';
-export interface IXtermProps {
-    onChange?: Function;
-    onInput?: Function;
+export interface IXtermProps extends React.DOMAttributes<{}> {
+    onChange?: (e) => void;
+    onInput?: (e) => void;
     onFocusChange?: Function;
     addons?: string[];
-    onScroll?: Function;
+    onScroll?: (e) => void;
+    onContextMenu?: (e) => void;
     options?: any;
     path?: string;
     value?: string;
@@ -23,7 +24,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
         container: HTMLDivElement;
     };
     constructor(props?: IXtermProps, context?: any);
-    attachAddon(addon: any): void;
+    applyAddon(addon: any): void;
     componentDidMount(): void;
     componentWillUnmount(): void;
     getTerminal(): Terminal;
@@ -35,6 +36,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     resize(cols: number, rows: number): void;
     setOption(key: string, value: boolean): void;
     refresh(): void;
+    onContextMenu(e: any): void;
     render(): JSX.Element;
 }
 export { Terminal, XTerm };

@@ -14,13 +14,13 @@ class XTerm extends React.Component {
             isFocused: false
         };
     }
-    attachAddon(addon) {
+    applyAddon(addon) {
         xterm_1.Terminal.applyAddon(addon);
     }
     componentDidMount() {
         if (this.props.addons) {
             this.props.addons.forEach(s => {
-                const addon = require(`xterm/${s}/${s}`);
+                const addon = require(`xterm/dist/addons/${s}/${s}`);
                 xterm_1.Terminal.applyAddon(addon);
             });
         }
@@ -28,6 +28,9 @@ class XTerm extends React.Component {
         this.xterm.open(this.refs.container);
         this.xterm.on('focus', this.focusChanged.bind(this, true));
         this.xterm.on('blur', this.focusChanged.bind(this, false));
+        if (this.props.onContextMenu) {
+            this.xterm.element.addEventListener('contextmenu', this.onContextMenu.bind(this));
+        }
         if (this.props.onInput) {
             this.xterm.on('data', this.onInput);
         }
@@ -69,6 +72,9 @@ class XTerm extends React.Component {
     }
     refresh() {
         this.xterm.refresh(0, this.xterm.rows - 1);
+    }
+    onContextMenu(e) {
+        this.props.onContextMenu && this.props.onContextMenu(e);
     }
     render() {
         const terminalClassName = className('ReactXTerm', this.state.isFocused ? 'ReactXTerm--focused' : null, this.props.className);

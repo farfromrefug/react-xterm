@@ -113,7 +113,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 	}
 	
 	onContextMenu(e) {
-        	this.props.onContextMenu && this.props.onContextMenu(e, this.xterm.getSelection());
+        	this.props.onContextMenu && this.props.onContextMenu(e);
     	}
 
 	render() {
