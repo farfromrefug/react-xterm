@@ -26,10 +26,8 @@ export interface IXtermState {
 
 export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 	xterm: Terminal
-	refs: {
-		[string: string]: any;
-		container: HTMLDivElement;
-	}
+	container: HTMLDivElement;
+
 	constructor(props?: IXtermProps, context?: any) {
 		super(props, context);
 		this.state = {
@@ -48,7 +46,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 			});
 		}
 		this.xterm = new Terminal(this.props.options);
-		this.xterm.open(this.refs.container);
+		this.xterm.open(this.container);
 		this.xterm.on('focus', this.focusChanged.bind(this, true));
 		this.xterm.on('blur', this.focusChanged.bind(this, false));
 		if (this.props.onContextMenu) {
@@ -124,7 +122,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState>{
 		);
 		return (
 
-			<div ref="container" className={terminalClassName}>
+			<div ref={x => { this.container = x }} className={terminalClassName}>
 			</div>
 		);
 	}
