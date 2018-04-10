@@ -19,14 +19,12 @@ export interface IXtermState {
 }
 export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     xterm: Terminal;
-    refs: {
-        [string: string]: any;
-        container: HTMLDivElement;
-    };
+    container: HTMLDivElement;
     constructor(props?: IXtermProps, context?: any);
     applyAddon(addon: any): void;
     componentDidMount(): void;
     componentWillUnmount(): void;
+    shouldComponentUpdate(nextProps: any, nextState: any): boolean;
     getTerminal(): Terminal;
     write(data: any): void;
     writeln(data: any): void;
