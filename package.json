@@ -1,6 +1,6 @@
 {
   "name": "react-xterm",
-  "version": "2.0.4",
+  "version": "3.6.0",
   "description": "react wrapper for xterm.js",
   "main": "./dist/react-xterm.js",
   "types": "./dist/react-xterm.d.ts",
@@ -15,15 +15,15 @@
   "author": "Martin Guillon",
   "license": "ISC",
   "peerDependencies": {
-    "react": "^15.6.2"
+    "react": "^16.3.1"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "xterm": "3.2.0"
+    "classnames": "^2.2.6",
+    "xterm": "3.6.0"
   },
   "devDependencies": {
     "@types/node": "^7.0.60",
-    "@types/react": "^16.3.6",
+    "@types/react": "^16.3.10",
     "@types/xterm": "^3.0.0",
     "lodash.throttle": "^4.1.1",
     "react": "^16.3.1",
