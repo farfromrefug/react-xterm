@@ -20,7 +20,7 @@ class XTerm extends React.Component {
     componentDidMount() {
         if (this.props.addons) {
             this.props.addons.forEach(s => {
-                const addon = require(`xterm/dist/addons/${s}/${s}`);
+                const addon = require(`xterm/dist/addons/${s}/${s}.js`);
                 xterm_1.Terminal.applyAddon(addon);
             });
         }
