@@ -1,24 +1,18 @@
 {
-	"compilerOptions": {
-		"target": "es6",
-        "module": "commonjs",
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "noImplicitAny": false,
-        "noEmitOnError": false,
-        "jsx": "react",
-        "outDir": "dist",
-        "declaration": true,
-        "rootDir": "src"
-    },
-    "include": [
-    "src/**/*.ts*"
-    ],
-    "exclude": [
-        "node_modules",
-        ".git",
-        "dist"
-    ]
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "noEmitOnError": false,
+    "jsx": "react",
+    "outDir": "dist",
+    "declaration": true,
+    "rootDir": "src"
+  },
+  "include": ["src/**/*.ts*"],
+  "exclude": ["node_modules", ".git", "dist"]
 }
