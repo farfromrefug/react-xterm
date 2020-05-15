@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs",
     "removeComments": true,
     "preserveConstEnums": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "noImplicitAny": false,
-    "noEmitOnError": false,
+    "noImplicitAny": true,
+    "noEmitOnError": true,
     "jsx": "react",
     "outDir": "dist",
     "declaration": true,
