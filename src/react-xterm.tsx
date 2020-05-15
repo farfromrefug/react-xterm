@@ -91,10 +91,10 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
   getTerminal() {
     return this.xterm;
   }
-  write(data: any) {
+  write(data: string | Uint8Array) {
     this.xterm && this.xterm.write(data);
   }
-  writeln(data: any) {
+  writeln(data: string | Uint8Array) {
     this.xterm && this.xterm.writeln(data);
   }
   focus() {
@@ -102,7 +102,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
       this.xterm.focus();
     }
   }
-  focusChanged(focused) {
+  focusChanged(focused: boolean) {
     this.setState({
       isFocused: focused,
     });
