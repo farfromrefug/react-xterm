@@ -1,6 +1,6 @@
 {
   "name": "react-xterm",
-  "version": "3.6.0",
+  "version": "4.6.0",
   "description": "react wrapper for xterm.js",
   "main": "./dist/react-xterm.js",
   "types": "./dist/react-xterm.d.ts",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "xterm": "3.6.0",
+    "xterm": "4.6.0",
     "chai": "^4.2.0",
     "express-ws": "^4.0.0",
     "node-pty": "^0.9.0"
