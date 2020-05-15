@@ -14,7 +14,7 @@
     "url": "https://github.com/farfromrefug/react-xterm"
   },
   "author": "Martin Guillon",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "react": "^16.3.1"
   },
