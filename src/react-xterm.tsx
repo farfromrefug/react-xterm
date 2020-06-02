@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Terminal } from "xterm";
+import { Terminal, ITerminalAddon } from "xterm";
 const className = require("classnames");
 // const debounce = require('lodash.debounce');
 // import styles from 'xterm/xterm.css';
@@ -7,12 +7,12 @@ const className = require("classnames");
 // require ('xterm/xterm.css');
 
 export interface IXtermProps extends React.DOMAttributes<{}> {
-  onChange?: (e) => void;
-  onInput?: (e) => void;
+  onChange?: (e: any) => void;
+  onInput?: (e: any) => void;
   onFocusChange?: Function;
-  addons?: string[];
-  onScroll?: (e) => void;
-  onContextMenu?: (e) => void;
+  addons?: ITerminalAddon[];
+  onScroll?: (e: any) => void;
+  onContextMenu?: (e: any) => void;
   options?: any;
   path?: string;
   value?: string;
@@ -33,17 +33,16 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     };
   }
 
-  loadAddon(addon) {
+  loadAddon(addon: ITerminalAddon) {
     this.xterm.loadAddon(addon);
   }
   componentDidMount() {
+    this.xterm = new Terminal(this.props.options);
     if (this.props.addons) {
-      this.props.addons.forEach((s) => {
-        const addon = require(`xterm/dist/addons/${s}/${s}.js`);
+      this.props.addons.forEach((addon) => {
         this.xterm.loadAddon(addon);
       });
     }
-    this.xterm = new Terminal(this.props.options);
     this.xterm.open(this.container);
     // this.xterm.on("focus", this.focusChanged.bind(this, true));
     // this.xterm.on("blur", this.focusChanged.bind(this, false));
@@ -73,7 +72,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
   //     }
   // }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: Readonly<IXtermProps>, nextState: Readonly<IXtermState>, nextContext: any) {
     // console.log('shouldComponentUpdate', nextProps.hasOwnProperty('value'), nextProps.value != this.props.value);
     if (
       nextProps.hasOwnProperty("value") &&
@@ -108,7 +107,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     });
     this.props.onFocusChange && this.props.onFocusChange(focused);
   }
-  onInput = (data) => {
+  onInput = (data: any) => {
     this.props.onInput && this.props.onInput(data);
   };
 
@@ -122,7 +121,7 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     this.xterm && this.xterm.refresh(0, this.xterm.rows - 1);
   }
 
-  onContextMenu(e) {
+  onContextMenu(e: any) {
     this.props.onContextMenu && this.props.onContextMenu(e);
   }
 
