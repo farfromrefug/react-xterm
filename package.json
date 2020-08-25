@@ -6,6 +6,7 @@
   "types": "./dist/react-xterm.d.ts",
   "scripts": {
     "publish": "tsc",
+    "start": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production webpack --config ./webpack.production.config.js"
   },
