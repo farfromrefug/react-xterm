@@ -10,7 +10,7 @@ export interface IXtermProps extends React.DOMAttributes<{}> {
     onChange?: (e) => void;
     onInput?: (e) => void;
     onFocusChange?: Function;
-    addons?: string[];
+    addons?: any[];
     onScroll?: (e) => void;
     onContextMenu?: (e) => void;
     options?: any;
@@ -38,9 +38,8 @@ export default class XTerm extends React.Component<IXtermProps, IXtermState> {
     }
     componentDidMount() {
         if (this.props.addons) {
-            this.props.addons.forEach(s => {
-                const addon = require(`xterm/dist/addons/${s}/${s}.js`);
-                Terminal.applyAddon(addon);
+            this.props.addons.forEach(addon => {
+                this.applyAddon(addon);
             });
         }
         this.xterm = new Terminal(this.props.options);
